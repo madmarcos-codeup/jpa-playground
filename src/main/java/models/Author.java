@@ -1,5 +1,8 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -15,12 +18,16 @@ public class Author {
     @Column(name = "author_name", nullable = false, length = 100)
     private String authorName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Book.class)
     @JoinTable(
             name="authors_books",
             joinColumns={@JoinColumn(name="author_id")},
             inverseJoinColumns={@JoinColumn(name="book_id")}
     )
+    @JsonIgnoreProperties("authors")
     private List<Book> books;
 
     @Override

@@ -1,5 +1,9 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,12 +19,8 @@ public class Book {
     private String title;
 
     // make it a bi-directional relationship
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="authors_books",
-            joinColumns={@JoinColumn(name="book_id")},
-            inverseJoinColumns={@JoinColumn(name="author_id")}
-    )
+    @ManyToMany(mappedBy = "books")
+    @JsonIgnoreProperties("books")
     private List<Author> authors;
 
 
@@ -29,10 +29,15 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        String output = "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                '}';
+                ", authors = [ ";
+
+        for (Author author: this.authors) {
+            output += author.getAuthorName() + ", ";
+        }
+        return output + " ] }";
     }
 
     public String getTitle() {
