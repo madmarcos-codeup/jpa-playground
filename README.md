@@ -4,7 +4,11 @@ This project is for devs to play around with JPA concepts without having to use 
 
 All main()-type functionality should be in the `tests` package. No Controllers are necessary to run the JPA code. The JPA code runs as unit tests. Look at AuthorBookTests.java for a model.
 
+---
+
 ## Observations
+
+### Common Problems in Bi-directional Many-to-many
 
 Bi-directional M:M relationships have the potential to recursively evaluate unto infinity. You will see a `StackOverflow Exception` when this occurs. A place where you may see it is simply calling the `toString()` method on one side of the M:M relationship.
 
@@ -15,8 +19,14 @@ There are a few ways to prevent this undesirable behavior:
 
 I implemented #3 for the Author/Book M:M relationship.
 
+### Cascade Types
+
+We use `DETACH` and `REFRESH` for cascade types. `DETACH` removes a child from memory when the parent is removed. `REFRESH` reloads the child whenever the parent is reloaded. Avoid using the wimp-out of `CascadeType.ALL`. 
+
 ---
 
 ## References
 
-https://www.baeldung.com/jpa-many-to-many
+- https://www.baeldung.com/jpa-many-to-many
+- https://www.baeldung.com/hibernate-lazy-eager-loading
+- https://www.baeldung.com/jpa-cascade-types

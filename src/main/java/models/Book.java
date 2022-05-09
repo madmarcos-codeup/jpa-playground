@@ -19,6 +19,7 @@ public class Book {
     private String title;
 
     // make it a bi-directional relationship
+    // Baeldung: On the target side, we only have to provide the name of the field, which maps the relationship.
     @ManyToMany(mappedBy = "books")
     @JsonIgnoreProperties("books")
     private List<Author> authors;
