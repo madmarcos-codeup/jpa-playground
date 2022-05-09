@@ -36,6 +36,13 @@ class AuthorBookTests {
     }
 
     @Test
+    void fetchBooks() {
+        List<Book> books = bookRepository.findAll();
+        System.out.println(books.get(0));
+        assert true;
+    }
+
+    @Test
     void addAuthor() {
         Author author = new Author();
         author.setAuthorName("Tom Jones");
@@ -55,8 +62,8 @@ class AuthorBookTests {
 
     @Test
     void addBookToAuthor() {
-        Author author = authorRepository.getById(1);
-        Book book = bookRepository.getById(2);
+        Author author = authorRepository.getById(2);
+        Book book = bookRepository.getById(4);
         List<Book> myBooks = new ArrayList<>();
         myBooks.add(book);
         author.setBooks(myBooks);

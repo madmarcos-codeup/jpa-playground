@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "books")
 @Entity
@@ -12,6 +13,16 @@ public class Book {
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
+
+    // make it a bi-directional relationship
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="authors_books",
+            joinColumns={@JoinColumn(name="book_id")},
+            inverseJoinColumns={@JoinColumn(name="author_id")}
+    )
+    private List<Author> authors;
+
 
     public Book() {
     }
