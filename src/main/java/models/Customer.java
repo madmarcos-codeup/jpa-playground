@@ -1,6 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -20,15 +19,16 @@ public class Customer {
 
     @OneToMany
     @JoinColumn(name = "customer_id")
-    private Set<CustomerPurchase> purchases;
+    private Set<Purchase> purchases;
 
     // accessors
 
     @Override
     public String toString() {
-        return "Widget{" +
+        return "Customer{" +
                 "id=" + id +
                 ", customerName='" + customerName + '\'' +
+                ", purchases= " + purchases +
                 '}';
     }
 
@@ -48,11 +48,11 @@ public class Customer {
         this.id = id;
     }
 
-    public Set<CustomerPurchase> getPurchases() {
+    public Set<Purchase> getPurchases() {
         return purchases;
     }
 
-    public void setPurchases(Set<CustomerPurchase> purchases) {
+    public void setPurchases(Set<Purchase> purchases) {
         this.purchases = purchases;
     }
 }

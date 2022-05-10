@@ -3,10 +3,9 @@ package services;
 import models.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import repositories.CustomerPurchaseRepository;
+import repositories.PurchaseRepository;
 import repositories.CustomerRepository;
 import repositories.MyMessageRepository;
-import repositories.WidgetRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.Optional;
 public class CustomerController {
 
     private CustomerRepository customerRepository;
-    private CustomerPurchaseRepository customerPurchaseRepository;
+    private PurchaseRepository customerPurchaseRepository;
     private MyMessageRepository myMessageRepository;
 
-    public CustomerController(CustomerRepository customerRepository, CustomerPurchaseRepository customerPurchaseRepository, MyMessageRepository myMessageRepository) {
+    public CustomerController(CustomerRepository customerRepository, PurchaseRepository customerPurchaseRepository, MyMessageRepository myMessageRepository) {
         this.customerRepository = customerRepository;
         this.customerPurchaseRepository = customerPurchaseRepository;
         this.myMessageRepository = myMessageRepository;
@@ -57,7 +56,7 @@ public class CustomerController {
     @PostMapping("/customers/{customerId}/widgets")
     @ResponseBody
     @Transactional(rollbackFor = { SQLException.class })
-    public String addCustomerPurchase(@PathVariable("customerId") int customerId, @RequestBody CustomerPurchase purchase) throws SQLException {
+    public String addCustomerPurchase(@PathVariable("customerId") int customerId, @RequestBody Purchase purchase) throws SQLException {
         // assume that purchase already has widget id set in the request data
         Customer customer = customerRepository.getById(customerId);
         purchase.setCustomer(customer);

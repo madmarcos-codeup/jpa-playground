@@ -34,7 +34,7 @@ Relationships are expressed both as Java entities AND as database tables. Follow
 
 ### One-to-many (1:M)
 
-- Entities: `Customer`, `CustomerPurchase`
+- Entities: `Customer`, `Purchase`
 - Tables: `customers`, `purchases`
 
 ### Many-to-many (M:M)
