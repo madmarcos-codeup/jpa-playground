@@ -29,18 +29,18 @@ Relationships are expressed both as Java entities AND as database tables. Follow
 
 ### One-to-one (1:1) 
 
-- Entities: Author.java and Address.java
-- Tables: authors and locations
+- Entities: `Author` and `Address`
+- Tables: `authors` and `locations`
 
 ### One-to-many (1:M)
 
-- Entities: Customer.java, CustomerPurchase.java
-- Tables: customers, purchases
+- Entities: `Customer`, `CustomerPurchase`
+- Tables: `customers`, `purchases`
 
 ### Many-to-many (M:M)
 
-- Entities: Author.java, Book.java
-- Tables: authors, books, author_books
+- Entities: `Author`, `Book`
+- Tables: `authors`, `books`, `authors_books`
 
 
 ---
