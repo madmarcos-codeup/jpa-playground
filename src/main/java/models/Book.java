@@ -34,9 +34,10 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", authors = [ ";
-
-        for (Author author: this.authors) {
-            output += author.getAuthorName() + ", ";
+        if(this.authors != null) {
+            for (Author author : this.authors) {
+                output += author.getAuthorName() + ", ";
+            }
         }
         return output + " ] }";
     }

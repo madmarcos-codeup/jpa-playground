@@ -18,6 +18,10 @@ public class Author {
     @Column(name = "author_name", nullable = false, length = 100)
     private String authorName;
 
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            targetEntity = Address.class)
+    private Address address;
+
     /*
     ManyToMany attributes:
         fetch LAZY will try to avoid loading child objects until they are needed like a toString()
@@ -53,6 +57,7 @@ public class Author {
         return "Author{" +
                 "id=" + id +
                 ", authorName='" + authorName + '\'' +
+                ", address='" + address + '\'' +
                 ", books=" + books +
                 '}';
     }
@@ -79,5 +84,13 @@ public class Author {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

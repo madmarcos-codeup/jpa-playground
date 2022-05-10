@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `authors`;
 CREATE TABLE `authors` (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
                            `author_name` varchar(100) DEFAULT NULL,
+                           `address_id` int(11) DEFAULT NULL,
                            PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,9 +36,23 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (2,'Tom Jones');
+INSERT INTO `authors` VALUES (1,'Tom Jones', NULL);
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `locations`;
+CREATE TABLE `locations` (
+                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                             `author_id` int(11) DEFAULT NULL,
+                             `address` varchar(256) NOT NULL,
+                             `city` varchar(256) NOT NULL,
+                             `state` varchar(20) NOT NULL,
+                             `zip` varchar(11) NOT NULL,
+                             PRIMARY KEY (`id`),
+                             KEY `author_id` (`author_id`),
+                             CONSTRAINT `locations_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Table structure for table `authors_books`
@@ -76,7 +91,7 @@ CREATE TABLE `books` (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `title` varchar(100) DEFAULT NULL,
                          PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
