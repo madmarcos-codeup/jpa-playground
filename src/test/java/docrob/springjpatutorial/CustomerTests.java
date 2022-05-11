@@ -49,4 +49,16 @@ class CustomerTests {
         assert true;
     }
 
+    @Test
+    void addReferral() {
+        Customer customer1 = customerRepository.getById(1);
+        Customer customer = new Customer();
+        customer.setCustomerName("Customer 2");
+        customer.setReferrer(customer1);
+        customerRepository.save(customer);
+        fetchCustomers();
+        assert true;
+    }
+
+
 }
