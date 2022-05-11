@@ -42,6 +42,10 @@ Relationships are expressed both as Java entities AND as database tables. Follow
 - Entities: `Author`, `Book`
 - Tables: `authors`, `books`, `authors_books`
 
+### 1:M Self relationship
+
+- Entity: `Customer`
+- Table: `customers`
 
 ---
 
@@ -52,6 +56,37 @@ Relationships are expressed both as Java entities AND as database tables. Follow
 Many JPA relationships are not equal, i.e., one side cannot exist without the other side. In these cases, you should only specify the details of the relationship on the "owner" side, i.e., the side that CAN exist without the other. The dependent side should have a simplified relationship annotation, with a `mappedBy` attribute that points to the instance variable name in the owning class that represents the dependent.
 
 If the relationship is equal, i.e., both sides can exist without the other OR neither side can exist without the other, then may want to forego the use of `mappedBy` and instead use complete annotations in both sides of the relationship.
+
+### Self relationships
+
+It is possible for an entity class to have one or more relationships defined with itself. An example of this is a human having another human as a spouse. You could have a separate table for storing spouse relationships. Another approach is to simply have a foreign key in the human table to store the id of that record's spouse. Some examples of various self-relationships are:
+1. Spouses have a 1:1 self-relationship.
+2. Branches in Git have a 1:M self-relationship. One branch can have many branches created from it.
+3. Friends have a M:M relationship. Note that a separate table must be used to record the friendships between people.
+
+In the JPA playground: a customer can refer another customer. Thus, one customer (the child) can have another customer as its referrer (the parent).
+
+This creates a 1:M parent/child relationship within the same table. It can be accomplished by having 2 instance vars in the same class use the same table column (referrer_id in this case):
+
+```java
+@ManyToOne
+@JoinColumn(name = "referrer_id")
+private Customer referrer;
+
+@OneToMany
+@JoinColumn(name = "referrer_id")
+private Set<Customer> referrals;
+```
+
+As an example, Customer 1 is the referrer for Customer 2. And Customer 2 should show up in Customer 1's set of referrals. Like this:
+
+```js
+Customer{id=1, customerName='Customer 1', purchases= [Purchase(id=1, itemDescription=Item 1, purchaseAmount=5.5)], referred by= null, referrals= [Customer 2, ] }
+
+Customer{id=2, customerName='Customer 2', purchases= [], referred by= Customer 1, referrals= [] } (edited)
+```
+
+Notice that Customer 1 does not have a referred by  and Customer 2 has no referrals
 
 ### Common Problems in Bi-directional Many-to-many
 
