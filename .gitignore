@@ -5,7 +5,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-spring-jpa-tutorial.iml
+application.properties
 
 ### STS ###
 .apt_generated
