@@ -15,6 +15,24 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE `customers` (
+                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                             `customer_name` varchar(256) NOT NULL,
+                             `referrer_id` int(11) DEFAULT NULL,
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+DROP TABLE IF EXISTS `purchases`;
+CREATE TABLE `purchases` (
+                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                             `customer_id` int(11) DEFAULT NULL,
+                             `item_desc` varchar(256) NOT NULL,
+                             `purchase_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Table structure for table `authors`
 --
