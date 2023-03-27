@@ -1,13 +1,17 @@
 package models;
 
-import javax.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "color_widgets")
 public class ColorWidget {
     @Id
     @Column(name = "widget_id", nullable = false)
-    private Integer widgetId;
+    private Long widgetId;
 
     @Column(name = "color", nullable = true, length = 100)
     private String color;
@@ -22,11 +26,12 @@ public class ColorWidget {
         this.color = color;
     }
 
-    public Integer getWidgetId() {
+    public Long getWidgetId() {
         return widgetId;
     }
 
-    public void setWidgetId(Integer widget_id) {
+    public void setWidgetId(Long widget_id) {
         this.widgetId = widget_id;
     }
+
 }

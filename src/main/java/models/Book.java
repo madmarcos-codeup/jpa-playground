@@ -1,10 +1,7 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.ToString;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "books")
@@ -21,7 +18,7 @@ public class Book {
     // make it a bi-directional relationship
     // Baeldung: On the target side, we only have to provide the name of the field, which maps the relationship.
     @ManyToMany(mappedBy = "books")
-    @JsonIgnoreProperties("books")
+//    @JsonIgnoreProperties("books")
     private List<Author> authors;
 
 

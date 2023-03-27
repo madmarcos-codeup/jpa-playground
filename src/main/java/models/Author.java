@@ -1,11 +1,8 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.ToString;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Table(name = "authors")
 @Entity
@@ -49,7 +46,7 @@ public class Author {
             joinColumns={@JoinColumn(name="author_id")},
             inverseJoinColumns={@JoinColumn(name="book_id")}
     )
-    @JsonIgnoreProperties("authors")
+//    @JsonIgnoreProperties("authors")
     private List<Book> books;
 
     @Override

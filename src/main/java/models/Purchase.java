@@ -1,11 +1,7 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -21,7 +17,7 @@ public class Purchase {
     private Integer id;
 
     @ManyToOne()
-    @JsonIgnoreProperties("purchases")
+//    @JsonIgnoreProperties("purchases")
     @ToString.Exclude
     private Customer customer;
 

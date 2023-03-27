@@ -1,8 +1,7 @@
 package models;
 
-import com.sun.istack.NotNull;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Table(name = "widgets")

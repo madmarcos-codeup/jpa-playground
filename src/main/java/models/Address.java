@@ -1,16 +1,15 @@
 package models;
 
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "locations")
 @Entity
+@Table(name = "locations")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

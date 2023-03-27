@@ -1,12 +1,12 @@
 package models;
 
-import com.sun.istack.NotNull;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Getter

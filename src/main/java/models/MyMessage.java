@@ -1,9 +1,9 @@
 package models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@Table(name = "my_messages")
 @Entity
+@Table(name = "my_messages")
 public class MyMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
