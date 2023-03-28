@@ -20,4 +20,7 @@ public class PetOwner {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @ToString.Exclude
+    private List<Cat> cats;
 }

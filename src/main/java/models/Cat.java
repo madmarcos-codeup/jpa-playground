@@ -26,4 +26,15 @@ public class Cat {
     @Column
     private int age;
 
+    @ManyToOne
+    private PetOwner owner;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name="cats_toys",
+            joinColumns={@JoinColumn(name="cat_id")},
+            inverseJoinColumns={@JoinColumn(name="toy_id")}
+    )
+    private List<Toy> toys;
+
 }

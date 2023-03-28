@@ -20,4 +20,12 @@ public class Toy {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name="cats_toys",
+            joinColumns={@JoinColumn(name="toy_id")},
+            inverseJoinColumns={@JoinColumn(name="cat_id")}
+    )
+    @ToString.Exclude
+    private List<Cat> cats;
 }
